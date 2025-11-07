@@ -4,7 +4,7 @@ import com.jad.datamanagement.IDataManager;
 import com.jad.reportgeneration.IReportGenerator;
 import com.jad.reportgeneration.ReportType;
 import com.jad.sensordata.ISensorFactory;
-import com.jad.sensordata.SensorType;
+import com.jad.sharedmodel.SensorType;
 import com.jad.userinterface.IApplication;
 import com.jad.userinterface.IUserInterface;
 import com.jad.userinterface.UserAction;

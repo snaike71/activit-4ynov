@@ -1,7 +1,8 @@
-package com.jad.sensordata;
+package com.jad.sharedmodel;
 
 public interface ISensor {
     SensorType getSensorType();
 
     SensorData getSensorData();
 }
+

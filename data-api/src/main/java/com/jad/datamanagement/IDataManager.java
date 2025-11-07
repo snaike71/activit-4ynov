@@ -1,7 +1,7 @@
 package com.jad.datamanagement;
 
-import com.jad.sensordata.ISensor;
-import com.jad.sensordata.SensorData;
+import com.jad.sharedmodel.ISensor;
+import com.jad.sharedmodel.SensorData;
 
 import java.util.List;
 
@@ -12,3 +12,4 @@ public interface IDataManager extends IDataProcessor {
 
     List<SensorData> getAllData();
 }
+

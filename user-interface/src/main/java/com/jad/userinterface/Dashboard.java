@@ -1,8 +1,8 @@
 package com.jad.userinterface;
 
 import com.jad.datamanagement.IDataManager;
-import com.jad.sensordata.SensorData;
-import com.jad.sensordata.SensorType;
+import com.jad.sharedmodel.SensorData;
+import com.jad.sharedmodel.SensorType;
 
 import java.text.MessageFormat;
 import java.util.List;

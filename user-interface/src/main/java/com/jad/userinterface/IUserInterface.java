@@ -1,6 +1,6 @@
 package com.jad.userinterface;
 
-import com.jad.sensordata.SensorData;
+import com.jad.sharedmodel.SensorData;
 
 import java.util.List;
 

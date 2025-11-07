@@ -1,4 +1,4 @@
-package com.jad.sensordata;
+package com.jad.sharedmodel;
 
 public enum SensorType {
     HUMIDITY("HumiditySensor", 20, 80, "%"),
@@ -38,3 +38,4 @@ public enum SensorType {
         return this.sensorName;
     }
 }
+

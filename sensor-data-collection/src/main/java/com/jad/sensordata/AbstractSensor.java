@@ -1,5 +1,8 @@
 package com.jad.sensordata;
 
+import com.jad.sharedmodel.ISensor;
+import com.jad.sharedmodel.SensorData;
+import com.jad.sharedmodel.SensorType;
 import com.jad.utils.Utils;
 
 import java.util.Random;

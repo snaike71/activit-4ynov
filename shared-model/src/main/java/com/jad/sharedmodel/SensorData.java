@@ -1,4 +1,4 @@
-package com.jad.sensordata;
+package com.jad.sharedmodel;
 
 import java.time.LocalDateTime;
 
@@ -19,3 +19,4 @@ public record SensorData(LocalDateTime time, SensorType sensorType, String unit,
         return this.sensorType.getSensorName();
     }
 }
+

@@ -1,0 +1,142 @@
+@startuml MavenSensorHub - Diagramme de packages (après refactoring)
+
+!define MAIN_COLOR #E1F5FE
+!define MODULE_COLOR #B3E5FC
+!define SHARED_COLOR #C8E6C9
+!define DEPENDENCY_COLOR #FF5252
+
+package "com.jad.mastersensorhub" as mainApp #MAIN_COLOR {
+}
+
+package "com.jad.utils" as utils #MODULE_COLOR {
+  class Utils
+  interface ILogger
+  class Logger
+  enum LogType
+}
+
+package "com.jad.sharedmodel" as sharedModel #SHARED_COLOR {
+  record SensorData
+  enum SensorType
+  interface ISensor
+}
+
+package "com.jad.sensordata" as sensorData #MODULE_COLOR {
+  abstract class AbstractSensor
+  class TemperatureSensor
+  class HumiditySensor
+  class PressureSensor
+  class WindSpeedSensor
+  interface ISensorFactory
+  class SensorFactory
+}
+
+package "com.jad.datamanagement" as dataApi #SHARED_COLOR {
+  interface IDataManager
+  interface IDataProcessor
+}
+
+package "com.jad.datamanagement" as dataMgmt #MODULE_COLOR {
+  class DataManager
+  class DataProcessor
+  interface IDataStorage
+  class DataStorage
+  class DataCollector
+  class DataValidator
+}
+
+package "com.jad.reportgeneration" as reportGen #MODULE_COLOR {
+  interface IReportGenerator
+  class ReportGenerator
+  abstract class AbstractReportGenerator
+  class TextReportGenerator
+  class CSVReportGenerator
+  enum ReportType
+}
+
+package "com.jad.userinterface" as userInterface #MODULE_COLOR {
+  interface IUserInterface
+  class UserInterface
+  interface IApplication
+  class Dashboard
+  enum UserAction
+  class UserInteraction
+}
+
+' Dépendances entre modules
+mainApp ..> utils : uses
+mainApp ..> sharedModel : uses
+mainApp ..> sensorData : uses
+mainApp ..> dataMgmt : uses
+mainApp ..> reportGen : uses
+mainApp ..> userInterface : uses
+
+sensorData ..> sharedModel : uses
+sensorData ..> utils : uses
+
+dataApi ..> sharedModel : uses
+
+dataMgmt ..> dataApi : uses (implements)
+dataMgmt ..> sharedModel : uses
+dataMgmt ..> utils : uses
+
+reportGen ..> sharedModel : uses
+reportGen ..> utils : uses
+
+userInterface ..> sharedModel : uses
+userInterface ..> dataApi : uses (via IDataManager)
+
+' Notes
+note right of mainApp
+  Module principal
+  Orchestre tous les autres modules
+  Point d'entrée de l'application
+end note
+
+note right of utils
+  Module utilitaire
+  Aucune dépendance interne
+  Utils, Logger
+end note
+
+note right of sharedModel
+  Module de modèles partagés (SPI)
+  Aucune dépendance interne
+  SensorData, SensorType, ISensor
+  Réduit les dépendances croisées
+end note
+
+note right of sensorData
+  Module de collecte
+  Implémentations concrètes des capteurs
+  Dépend de shared-model et utils
+end note
+
+note right of dataApi
+  Module API de gestion des données
+  Contient uniquement les interfaces
+  IDataManager, IDataProcessor
+  Dépend de shared-model
+end note
+
+note right of dataMgmt
+  Module de gestion des données
+  Implémente data-api
+  Dépend de shared-model (modèles)
+  et utils (logging)
+end note
+
+note right of reportGen
+  Module de génération de rapports
+  Dépend de shared-model (SensorData)
+  et utils (logging)
+end note
+
+note right of userInterface
+  Module d'interface utilisateur
+  Dépend de shared-model (modèles)
+  et data-management (via interface)
+end note
+
+@enduml
+

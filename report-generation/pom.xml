@@ -11,23 +11,16 @@
 
     <artifactId>report-generation</artifactId>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>com.jad</groupId>
-            <artifactId>sensor-data-collection</artifactId>
+            <artifactId>shared-model</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.jad</groupId>
             <artifactId>utils</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
